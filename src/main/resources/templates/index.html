@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script src="js/jquery-3.4.1.min.js"></script>
+<script src="js/ajaxInit.js"></script>
+<script src="js/jquery.cookie.js"></script>
+<body>
+
+
+
+
+
+
+<p>这是登录进来之后的主页</p>
+<p>templates</p>
+
+<input type="button" value="doAjax" onclick="doAjax()">
+<p></p>
+<input type="button" value="doLoginOut" onclick="doLoginOut()">
+
+</body>
+</html>
+<script>
+
+    function doAjax() {
+        $.ajax({
+            url: '/doAjax',
+            success: function (res) {
+                console.log(res);
+            }
+        })
+    }
+
+    function doLoginOut() {
+        $.ajax({
+            url:'/loginOut',
+            data:{token:$.cookie("token")},
+            type:'post',
+            success:function (res) {
+                //window.location.href='/go'
+            }
+        })
+    }
+
+    $(function () {
+        var token=$.cookie("token");
+        console.log(token)
+        if(token==''){
+            window.location.href='/error201'
+        }
+    })
+
+
+</script>

@@ -1,0 +1,21 @@
+
+
+
+
+spring:
+  datasource:
+    url: jdbc:mysql://192.168.1.7:3306/zhouliang?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.jdbc.Driver
+  redis:
+    host: 127.0.0.1
+    port: 6379
+mybatis:
+  mapper-locations:  classpath:static/mapper/*.xml
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+
+
+
