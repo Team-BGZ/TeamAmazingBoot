@@ -1,13 +1,19 @@
 package com.example.demo.util.aspect;
 
+import com.alibaba.fastjson.JSONObject;
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.Signature;
+import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.stereotype.Component;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
+import javax.servlet.http.HttpServletRequest;
 import java.lang.reflect.Method;
 
 /**
@@ -19,7 +25,41 @@ import java.lang.reflect.Method;
 @Component
 public class LogAspect {
 
-    @Before(value ="execution( * com.example.demo.controller.IndexController.*(..))" )
+
+    @Around(value = "execution(* com.example.demo.controller.IndexController.doAjax(..))")
+    //这个Around只执行一次 妈的不知道为什么
+    public JSONObject around(ProceedingJoinPoint joinPoint) throws Throwable {  //ProceedingJoinPoint只能在around里面用
+        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+        System.out.println(request.getHeader("token"));
+
+        System.out.println("Around");
+        JSONObject result = (JSONObject) joinPoint.proceed(); //around改变了原方法的返回值，你不写这个就gg
+        return result;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /*@Before(value ="execution( * com.example.demo.controller.IndexController.*(..))" )
     public void before(JoinPoint joinPoint){
         System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>进入AOP");
         String operationType = "";
@@ -55,7 +95,7 @@ public class LogAspect {
         System.out.println("操作解释:"+operateExplain);
 
         System.out.println("---------------------------开始保存日志----------------------------------");
-    }
+    }*/
 
 
 }
