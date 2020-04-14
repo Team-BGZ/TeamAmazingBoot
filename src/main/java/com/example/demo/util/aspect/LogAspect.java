@@ -27,15 +27,21 @@ public class LogAspect {
 
 
     @Around(value = "execution(* com.example.demo.controller.IndexController.doAjax(..))")
-    //这个Around只执行一次 妈的不知道为什么
-    public JSONObject around(ProceedingJoinPoint joinPoint) throws Throwable {  //ProceedingJoinPoint只能在around里面用
+    public JSONObject around(ProceedingJoinPoint joinPoint) throws Throwable {  //ProceedingJoinPoint只能在around里面用 而且必须有
+        //around是执行你写的 before和after  你没写就不执行
         System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>进入Around");
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
         System.out.println(request.getHeader("token"));
 
-        System.out.println("Around");
-        JSONObject result = (JSONObject) joinPoint.proceed(); //around改变了原方法的返回值，你不写这个就gg
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>DoAround");
+        JSONObject result = (JSONObject) joinPoint.proceed(); //这一句的意思是 执行切点的方法
         return result;
+    }
+
+    @After(value = "execution(* com.example.demo.controller.IndexController.doAjax(..))")
+    public void After(JoinPoint joinPoint) throws Throwable {  //ProceedingJoinPoint只能在around里面用
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>进入After");
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>DoAfter");
     }
 
 
@@ -76,6 +82,5 @@ public class LogAspect {
 
         System.out.println("---------------------------开始保存日志----------------------------------");
     }
-
 
 }

@@ -35,7 +35,6 @@ public class LoginController {
         return "login";
     }
 
-
     @RequestMapping(value = "/login", method = {RequestMethod.POST})
     @ResponseBody
     public JSONObject login(User user){
