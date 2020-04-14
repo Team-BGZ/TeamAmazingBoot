@@ -29,6 +29,7 @@ public class LogAspect {
     @Around(value = "execution(* com.example.demo.controller.IndexController.doAjax(..))")
     //这个Around只执行一次 妈的不知道为什么
     public JSONObject around(ProceedingJoinPoint joinPoint) throws Throwable {  //ProceedingJoinPoint只能在around里面用
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>进入Around");
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
         System.out.println(request.getHeader("token"));
 
@@ -38,30 +39,9 @@ public class LogAspect {
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    /*@Before(value ="execution( * com.example.demo.controller.IndexController.*(..))" )
+    @Before(value ="execution( * com.example.demo.controller.IndexController.*(..))" )
     public void before(JoinPoint joinPoint){
-        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>进入AOP");
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>进入Before");
         String operationType = "";
         String operateExplain = "";
         //获取封装了署名信息的对象,在该对象中可以获取到目标方法名,所属类的Class等信息
@@ -95,7 +75,7 @@ public class LogAspect {
         System.out.println("操作解释:"+operateExplain);
 
         System.out.println("---------------------------开始保存日志----------------------------------");
-    }*/
+    }
 
 
 }
