@@ -27,14 +27,14 @@ public class LogAspect {
 
 
     @Around(value = "execution(* com.example.demo.controller.IndexController.doAjax(..))")
-    public JSONObject around(ProceedingJoinPoint joinPoint) throws Throwable {  //ProceedingJoinPoint只能在around里面用 而且必须有
+    public Object around(ProceedingJoinPoint joinPoint) throws Throwable {  //ProceedingJoinPoint只能在around里面用 而且必须有
         //around是执行你写的 before和after  你没写就不执行
         System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>进入Around");
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
         System.out.println(request.getHeader("token"));
 
         System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>DoAround");
-        JSONObject result = (JSONObject) joinPoint.proceed(); //这一句的意思是 执行切点的方法
+        Object result =  joinPoint.proceed(); //这一句的意思是 执行切点的方法
         return result;
     }
 
