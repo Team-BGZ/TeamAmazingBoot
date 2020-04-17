@@ -35,6 +35,7 @@ public class Interceptor extends HandlerInterceptorAdapter {
             return true;
         }else{
             redirect(httpServletRequest,httpServletResponse);
+
             return false;
         }
     }

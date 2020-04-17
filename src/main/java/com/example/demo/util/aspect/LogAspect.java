@@ -62,6 +62,7 @@ public class LogAspect {
         String targetName = joinPoint.getTarget().getClass().getName();
 
         //获取传入目标方法的参数对象
+
         Object[] args = joinPoint.getArgs();
         Class<?> aClass = null;
 
