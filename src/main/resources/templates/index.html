@@ -20,14 +20,28 @@
 <input type="button" value="doAjax" onclick="doAjax()">
 <p></p>
 <input type="button" value="doLoginOut" onclick="doLoginOut()">
+<p></p>
+<input type="button" value="doListToMap" onclick="doListToMap()">
+
 
 </body>
 </html>
 <script>
 
+    function doListToMap() {
+        $.ajax({
+            url: '/doListToMap',
+            type:'get',
+            success: function (res) {
+                console.log(res);
+            }
+        })
+    }
+
     function doAjax() {
         $.ajax({
             url: '/doAjax',
+            type:'get',
             success: function (res) {
                 console.log(res);
             }

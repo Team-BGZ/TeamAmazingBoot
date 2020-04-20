@@ -1,16 +1,18 @@
 package com.example.demo.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.example.demo.pojo.Organization;
 import com.example.demo.pojo.User;
+import com.example.demo.service.OrganizationService;
 import com.example.demo.service.UserService;
+import com.example.demo.util.ListToTreeUtil;
 import com.example.demo.util.redis.RedisUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Administrator on 2020/4/9.
@@ -20,8 +22,14 @@ public class IndexController {
 
     @Autowired
     private UserService userService;
-    @Resource
+    @Autowired
+    private OrganizationService organizationService;
+    @Autowired
     private RedisUtil redisUtil;
+    @Autowired
+    private ListToTreeUtil listToTreeUtil;
+
+
 
     @RequestMapping(value = "/index")
     public String index(){
@@ -29,7 +37,7 @@ public class IndexController {
     }
 
 
-    @RequestMapping(value = "/doAjax")
+    @GetMapping(value = "/doAjax")
     @ResponseBody
     public JSONObject doAjax(){
         JSONObject res= new JSONObject();
@@ -44,6 +52,17 @@ public class IndexController {
         return res;
     }
 
+
+    @GetMapping(value = "/doListToMap")
+    @ResponseBody
+    public JSONObject doListToMap(){
+        JSONObject res= new JSONObject();
+        List<Organization> utilList=organizationService.selectOrganization(null);
+        List returnList=listToTreeUtil.listToTree(utilList);
+        res.put("message","success");
+        res.put("list",returnList);
+        return res;
+    }
 
 }
 

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.dao.OrganizationMapper" >
+    <resultMap id="OrganizationMap" type="com.example.demo.pojo.Organization" >
+        <id column="id" property="id"/>
+        <result column="organization_name" property="organizationName"/>
+        <result column="organization_upid" property="organizationUpId"/>
+        <result column="organization_adress" property="organizationAdress"/>
+    </resultMap>
+
+
+   <select id="selectOrganization" parameterType="com.example.demo.pojo.Organization" resultMap="OrganizationMap">
+       select * from Organization where 1=1
+   </select>
+
+</mapper>

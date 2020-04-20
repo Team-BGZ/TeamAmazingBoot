@@ -56,8 +56,8 @@ public class ThePandaDuDu {
         System.out.println(allRandomSet);
 
         int[] play1 = Arrays.copyOfRange(allCards, 0, 17);
-        int[] play3 = Arrays.copyOfRange(allCards, 17, 34);
-        int[] play2 = Arrays.copyOfRange(allCards, 34, 51);
+        int[] play2 = Arrays.copyOfRange(allCards, 17, 34);
+        int[] play3 = Arrays.copyOfRange(allCards, 34, 51);
 
         List playOne=new ArrayList();
         for(int l:play1){
