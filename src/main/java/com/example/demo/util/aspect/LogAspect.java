@@ -45,7 +45,7 @@ public class LogAspect {
     }
 
 
-    @Before(value ="execution( * com.example.demo.controller.IndexController.*(..))" )
+    @Before(value ="execution( * com.example.demo.controller.IndexController.doAjax(..))" )
     public void before(JoinPoint joinPoint){
         System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>进入Before");
         String operationType = "";

@@ -14,12 +14,13 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 public class InterceptorConfig extends WebMvcConfigurerAdapter {
 
     @Autowired
-    private Interceptor interceptor;
+    private TokenInterceptor tokenInterceptor;
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(interceptor)
-        .addPathPatterns("/**").excludePathPatterns("/error201","/go","/login","/index","/js/*","/loginOut","/sayHello");
+        registry.addInterceptor(tokenInterceptor)
+        .addPathPatterns("/**").excludePathPatterns("/error201","/go","/login","/index","/js/*","/loginOut");
+
         }
 
 }

@@ -25,6 +25,7 @@ public class ListToTreeUtil {
             List<Organization> returnList=new ArrayList();
 
             for(int i=0;i<utilList.size();i++){
+
                 if(StringUtils.isEmpty(utilList.get(i).getOrganizationUpId())){
                     returnList.add(utilList.get(i));
                 }

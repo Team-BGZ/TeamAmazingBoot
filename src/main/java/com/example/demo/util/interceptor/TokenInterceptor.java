@@ -18,7 +18,7 @@ import java.io.IOException;
  * Created by Administrator on 2020/4/9.
  */
 @Component
-public class Interceptor extends HandlerInterceptorAdapter {
+public class TokenInterceptor extends HandlerInterceptorAdapter {
 
     @Autowired
     private TokenHelper redisTokenHelp;

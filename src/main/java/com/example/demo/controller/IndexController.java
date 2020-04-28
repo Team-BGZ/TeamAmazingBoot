@@ -53,14 +53,23 @@ public class IndexController {
     }
 
 
-    @GetMapping(value = "/doListToMap")
+    @GetMapping(value = "/doListToTree")
     @ResponseBody
-    public JSONObject doListToMap(){
+    public JSONObject doListToTree(){
         JSONObject res= new JSONObject();
         List<Organization> utilList=organizationService.selectOrganization(null);
         List returnList=listToTreeUtil.listToTree(utilList);
         res.put("message","success");
         res.put("list",returnList);
+        return res;
+    }
+
+
+    @PostMapping(value = "/doAgainSubmit")
+    @ResponseBody
+    public JSONObject doAgainSubmit(String testParm){
+        JSONObject res= new JSONObject();
+        res.put("message",testParm);
         return res;
     }
 

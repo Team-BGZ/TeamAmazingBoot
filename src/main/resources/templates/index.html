@@ -21,16 +21,33 @@
 <p></p>
 <input type="button" value="doLoginOut" onclick="doLoginOut()">
 <p></p>
-<input type="button" value="doListToMap" onclick="doListToMap()">
+<input type="button" value="doListToTree" onclick="doListToTree()">
+<p></p>
+<input type="button" value="doAgainSubmit" onclick="doAgainSubmit()">
+
+<form id="doAgainSubmit">
+    <input type="text" name="testParm">
+</form>
 
 
 </body>
 </html>
 <script>
 
-    function doListToMap() {
+    function doAgainSubmit() {
         $.ajax({
-            url: '/doListToMap',
+            url: '/doAgainSubmit',
+            type:'post',
+            data:$('#doAgainSubmit').serialize(),
+            success: function (res) {
+                console.log(res);
+            }
+        })
+    }
+
+    function doListToTree() {
+        $.ajax({
+            url: '/doListToTree',
             type:'get',
             success: function (res) {
                 console.log(res);
