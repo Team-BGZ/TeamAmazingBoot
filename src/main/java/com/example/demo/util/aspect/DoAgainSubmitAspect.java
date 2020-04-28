@@ -51,7 +51,7 @@ public class DoAgainSubmitAspect {
             res.put("message","请勿重复提交");
             return res;
         }
-        redisUtil.set(key, UUID.randomUUID().toString().replace("-", ""),30000);
+        redisUtil.set(key, UUID.randomUUID().toString().replace("-", ""),5);
 
         res= (JSONObject)joinPoint.proceed();
         return res;
