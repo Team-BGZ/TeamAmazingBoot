@@ -8,6 +8,7 @@ import com.example.demo.service.UserService;
 import com.example.demo.util.ListToTreeUtil;
 import com.example.demo.util.redis.RedisUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.data.redis.RedisProperties;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -72,6 +73,24 @@ public class IndexController {
         res.put("message",testParm);
         return res;
     }
+
+
+    @GetMapping(value = "/doSetLock")
+    @ResponseBody
+    public JSONObject doSetLock(String testParm){
+        JSONObject res= new JSONObject();
+        res.put("message",redisUtil.lock(testParm));
+        return res;
+    }
+
+    @GetMapping(value = "/doDelLock")
+    @ResponseBody
+    public JSONObject doDelLock(String testParm){
+        JSONObject res= new JSONObject();
+        res.put("message",redisUtil.del(testParm));
+        return res;
+    }
+
 
 }
 

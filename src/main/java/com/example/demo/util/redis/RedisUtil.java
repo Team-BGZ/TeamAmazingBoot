@@ -1,10 +1,13 @@
 package com.example.demo.util.redis;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisCallback;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 
+import java.util.Objects;
+import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -88,4 +91,15 @@ public class RedisUtil {
             return false;
         }
     }
+
+    public boolean lock(String key){
+        try {
+            return redisTemplate.opsForValue().setIfAbsent(key, UUID.randomUUID().toString().replace("-", ""));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+
 }

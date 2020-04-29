@@ -24,15 +24,42 @@
 <input type="button" value="doListToTree" onclick="doListToTree()">
 <p></p>
 <input type="button" value="doAgainSubmit" onclick="doAgainSubmit()">
-
+<p></p>
 <form id="doAgainSubmit">
     <input type="text" name="testParm">
 </form>
+<p></p>
+<input type="button" value="doSetLock" onclick="doSetLock()">
+<p></p>
+<input type="button" value="doDelLock" onclick="doDelLock()">
+
 
 
 </body>
 </html>
 <script>
+
+    function doDelLock() {
+        $.ajax({
+            url: '/doDelLock',
+            type:'get',
+            data:{testParm:'testParm'},
+            success: function (res) {
+                console.log(res);
+            }
+        })
+    }
+
+    function doSetLock() {
+        $.ajax({
+            url: '/doSetLock',
+            type:'get',
+            data:{testParm:'testParm'},
+            success: function (res) {
+                console.log(res);
+            }
+        })
+    }
 
     function doAgainSubmit() {
         $.ajax({
