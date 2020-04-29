@@ -38,6 +38,10 @@
         $.ajax({
             url: '/doAgainSubmit',
             type:'post',
+            beforeSend:function (req) {
+                req.setRequestHeader("ifSubit", "yes");
+                req.setRequestHeader("token", $.cookie('token'));
+            },
             data:$('#doAgainSubmit').serialize(),
             success: function (res) {
                 console.log(res);

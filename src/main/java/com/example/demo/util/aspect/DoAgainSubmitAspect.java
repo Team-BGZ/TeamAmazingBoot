@@ -26,7 +26,7 @@ import java.util.concurrent.TimeUnit;
 
 
 @Aspect
-@Component
+
 public class DoAgainSubmitAspect {
 
     @Autowired
